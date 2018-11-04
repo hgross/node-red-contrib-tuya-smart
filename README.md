@@ -6,8 +6,8 @@ Once you got these device credentials, you will be able to configure and use thi
 The tuya devices are sold under different names like Gosund, BlitzWolf, Teckin, Meross, Homecube, ...
 Check out the [general discussion](https://github.com/codetheweb/tuyapi/issues/5) regarding the tuya api and compatibility.
 
-![alt text](https://github.com/hgross/node-red-contrib-tuya-smart/images/connecting.png "Connecting tuya smart devices")
-![alt text](https://github.com/hgross/node-red-contrib-tuya-smart/images/connected_with_format.png "Connected tuya smart devices and data format")
+![alt text](https://raw.githubusercontent.com/hgross/node-red-contrib-tuya-smart/master/images/connecting.png "Connecting tuya smart devices")
+![alt text](https://raw.githubusercontent.com/hgross/node-red-contrib-tuya-smart/master/images/connected_with_format.png "Connected tuya smart devices and data format")
 
 
 ## Installation
