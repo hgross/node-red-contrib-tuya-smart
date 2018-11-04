@@ -1,0 +1,62 @@
+<script type="text/javascript">
+    RED.nodes.registerType("tuya-smart", {
+        category: "input",
+        defaults: {
+            deviceName: { value: "", required: true },
+            deviceIp: { value: "", required: true },
+            deviceId: { value: "", required: true },
+            deviceKey: { value: "", required: true },
+            pollingInterval: { value: 10, validate:RED.validators.number(), rquired: true }
+        },
+        inputs: 0,
+        outputs: 1,
+        icon: "bridge.png",
+        label: function() {
+            return this.deviceName || this.deviceIp || "tuya-smart";
+        }
+    });
+</script>
+
+<script type="text/x-red" data-template-name="tuya-smart">
+    <div class="form-row">
+        <label for="node-input-deviceName"><i class="icon-tag"></i> Device name</label>
+        <input type="text" id="node-input-deviceName" placeholder="Your name for the device">
+    </div>
+    <div class="form-row">
+        <label for="node-input-deviceIp"><i class="fa fa-server"></i> Device IP</label>
+        <input type="text" id="node-input-deviceIp" placeholder="192.168.3.56">
+    </div>
+    <div class="form-row">
+        <label for="node-input-deviceId"><i class="fa fa-id-badge"></i> Device ID</label>
+        <input type="text" id="node-input-deviceId" placeholder="05200678ecfabc93ed86">
+    </div>
+    <div class="form-row">
+        <label for="node-input-deviceKey"><i class="fa fa-key"></i> Device Key</label>
+        <input type="text" id="node-input-deviceKey" placeholder="fd358171e8au7ef2">
+    </div>
+    <div class="form-row">
+        <label for="node-input-pollingInterval"><i class="fa fa-clock-o"></i> Polling interval (seconds)</label>
+        <input type="text" id="node-input-pollingInterval" placeholder="10">
+    </div>
+</script>
+
+<script type="text/x-red" data-help-name="tuya-smart">
+    <h1>tuya-smart</h1>
+    <p>Polls the state of tuya smart power plugs periodically. For now the node simply reads the on/off state of a smart device. It will emit messages in the format of </p>
+    <p>The payload will contain the following fields
+        <ul>
+            <li><code>state: true|false</code> - true, if the power plug socket is enabled</li>
+            <li><code>deviceIp: "string"</code> - The configured device ip</li>
+            <li><code>deviceId: "string</code> - The configured device id (similar to the one from the tuya smart/smart life app</li>
+            <li><code>deviceName: "string"</code> - The configured device name (arbitrary) for you to identify devices more easily.</li>
+        </ul>
+    </p>
+    <code>  
+        payload: {
+            state: true|false, # true for on, false for off
+            deviceIp: "configured device ip",
+            deviceId: "configured device id",
+            deviceName: "configured device name"
+        }
+    </code>
+</script>

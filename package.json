@@ -1,0 +1,40 @@
+{
+  "name": "node-red-contrib-tuya-smart",
+  "version": "1.0.3",
+  "description": "Nodes to get data from tuya smart devices (like smart plugs, bulbs, ...).",
+  "main": "dist/index.js",
+  "scripts": {
+    "clean": "rm -rf dist pkg out",
+    "build": "tsc && cp lib/*.html dist/lib/",
+    "debug": "docker run -it -p 1880:1880 -v $(pwd)/dist/lib:/data/nodes nodered/node-red-docker"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hgross/node-red-contrib-tuya-smart"
+  },
+  "keywords": [
+    "node-red",
+    "tuya",
+    "tuya-smart",
+    "powerplug",
+    "smart-home"
+  ],
+  "author": "Henning Groß",
+  "license": "MIT",
+  "node-red": {
+    "nodes": {
+      "tuya-smart": "dist/lib/tuya-smart.js"
+    }
+  },
+  "devDependencies": {
+    "@types/node": "9.4.6",
+    "@types/node-red": "0.17.3",
+    "mkdirp": "0.5.1",
+    "tslint": "5.11.0",
+    "ts-node": "4.1.0",
+    "typescript": "2.6.2"
+  },
+  "dependencies": {
+    "tuyapi": "3.1.2"
+  }
+}
