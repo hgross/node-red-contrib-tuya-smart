@@ -16,9 +16,31 @@ export interface TuyaSmartNode extends Node {
     pollingInterval: number;
 }
 
+/**
+ * Output message format of the tuya node.
+ */
 export interface TuyaSmartNodeMessage {
     state: Boolean;
     deviceName: string;
     deviceIp: string;
     deviceId: string;
+}
+
+export interface NodeRedInputMessage {
+    payload: TuyaSmartNodeInputMessage;
+}
+
+/**
+ * Input message format that is interpreted by the tuya node.
+ */
+export interface TuyaSmartNodeInputMessage {
+    /**
+     * Desired state to be set
+     */
+    state: Boolean;
+
+    /**
+     * DPS index (default 1)
+     */
+    dpsIndex?: number;
 }

@@ -1,8 +1,8 @@
 declare class TuyaDevice {
     constructor(options: TuyaDeviceOptions);
-    resolveId(options:any);
-    get(options?:any) : Promise<any>;
-    set(options:any) : Promise<Boolean>;
+    resolveId(options:any) : Promise<Boolean>;
+    get(options?:any) : Promise<Boolean|any>;
+    set(options: TuyAPISetOptions) : Promise<Boolean>;
     connect():Promise<Boolean>;
     disconnect():Promise<Boolean>;
     isConnected():Boolean;
@@ -38,6 +38,19 @@ declare interface TuyaDeviceOptions {
     version?: string = "3.1";
 
     persistentConnection?: boolean = false;
+};
+
+declare interface TuyAPISetOptions {
+    set: Boolean,
+    dps: number = 1;
+};
+
+declare class TuyAPIGetOptions {
+    constructor(
+        dps : number = 1,
+        schema : Boolean = false,
+        returnAsEvent : Boolean = false,
+    );
 };
 
 declare module 'tuyapi' {

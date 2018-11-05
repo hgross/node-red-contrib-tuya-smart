@@ -8,7 +8,7 @@
             deviceKey: { value: "", required: true },
             pollingInterval: { value: 10, validate:RED.validators.number(), rquired: true }
         },
-        inputs: 0,
+        inputs: 1,
         outputs: 1,
         icon: "bridge.png",
         label: function() {
@@ -42,8 +42,8 @@
 
 <script type="text/x-red" data-help-name="tuya-smart">
     <h1>tuya-smart</h1>
-    <p>Polls the state of tuya smart power plugs periodically. For now the node simply reads the on/off state of a smart device. It will emit messages in the format of </p>
-    <p>The payload will contain the following fields
+    <p>Polls the state of tuya smart power plugs periodically. The node reads (polls) the on/off state of a smart device. It will emit messages in the format of </p>
+    <p>The output payload will contain the following fields
         <ul>
             <li><code>state: true|false</code> - true, if the power plug socket is enabled</li>
             <li><code>deviceIp: "string"</code> - The configured device ip</li>
@@ -51,12 +51,11 @@
             <li><code>deviceName: "string"</code> - The configured device name (arbitrary) for you to identify devices more easily.</li>
         </ul>
     </p>
-    <code>  
-        payload: {
-            state: true|false, # true for on, false for off
-            deviceIp: "configured device ip",
-            deviceId: "configured device id",
-            deviceName: "configured device name"
-        }
-    </code>
+    <p>The input payload respects the following fields
+        <ul>
+            <li><code>state: true|false</code> - true will enable the socket, false will disable it</li>
+        </ul>
+        Once the state was set successfully, the node will poll the state immediately and provide it through the output.
+    </p>
+    <p>Refer to <a href="https://github.com/hgross/node-red-contrib-tuya-smart" target="_blank">the repository</a> for some images of example flows with actual in/out payloads.</p>
 </script>
