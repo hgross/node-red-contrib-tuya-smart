@@ -1,6 +1,8 @@
 # tuya-smart
 
 [![Build Status](https://travis-ci.org/hgross/node-red-contrib-tuya-smart.svg?branch=master)](https://travis-ci.org/hgross/node-red-contrib-tuya-smart)
+[![npm version](https://badge.fury.io/js/node-red-contrib-tuya-smart.svg)](https://badge.fury.io/js/node-red-contrib-tuya-smart)
+
 
 Input nodes to interface with smart plugs, bulbs, ... from tuya.
 Makes use of the [tuyapi library](https://github.com/codetheweb/tuyapi "tuyapi project site").
