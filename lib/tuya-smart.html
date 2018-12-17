@@ -6,6 +6,7 @@
             deviceIp: { value: "", required: true },
             deviceId: { value: "", required: true },
             deviceKey: { value: "", required: true },
+            request: { value: "", required: false },
             pollingInterval: { value: 10, validate:RED.validators.number(), rquired: true }
         },
         inputs: 1,
@@ -35,6 +36,10 @@
         <input type="text" id="node-input-deviceKey" placeholder="fd358171e8au7ef2">
     </div>
     <div class="form-row">
+        <label for="node-input-deviceKey"><i class="fa fa-key"></i> Request</label>
+        <input type="text" id="node-input-request" placeholder="">
+    </div>
+    <div class="form-row">
         <label for="node-input-pollingInterval"><i class="fa fa-clock-o"></i> Polling interval (seconds)</label>
         <input type="text" id="node-input-pollingInterval" placeholder="10">
     </div>
@@ -45,12 +50,19 @@
     <p>Polls the state of tuya smart power plugs periodically. The node reads (polls) the on/off state of a smart device. It will emit messages in the format of </p>
     <p>The output payload will contain the following fields
         <ul>
-            <li><code>state: true|false</code> - true, if the power plug socket is enabled</li>
+            <li><code>data: mixed</code> - Depending on the request type. See below.</li>
             <li><code>deviceIp: "string"</code> - The configured device ip</li>
-            <li><code>deviceId: "string</code> - The configured device id (similar to the one from the tuya smart/smart life app</li>
+            <li><code>deviceId: "string"</code> - The configured device id (similar to the one from the tuya smart/smart life app</li>
             <li><code>deviceName: "string"</code> - The configured device name (arbitrary) for you to identify devices more easily.</li>
         </ul>
     </p>
+    <p>The <code>data</code> payload depends on the <code>request</code>. Options ar
+        <ul>
+            <li><code>empty</code> - Just get the device status. Data will be Boolean (true, if the power plug socket is enabled).<li>
+            <li><code>{"schema": true}</code> - Get all data for the device. Data will be an object.<li>
+            <li><code>{"dps": <number>}</code> - Get a single property from the device. Data will be whatever type that property is.</li>
+        </ul>
+    <p>
     <p>The input payload respects the following fields
         <ul>
             <li><code>state: true|false</code> - true will enable the socket, false will disable it</li>

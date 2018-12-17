@@ -5,6 +5,7 @@ export interface TuyaSmartProperties extends NodeProperties {
     deviceKey: string;
     deviceId: string;
     deviceName: string;
+    request: string;
     pollingInterval: number;
 }
 
@@ -13,6 +14,7 @@ export interface TuyaSmartNode extends Node {
     deviceKey: string;
     deviceId: string;
     deviceName: string;
+    request: string;
     pollingInterval: number;
 }
 
@@ -20,7 +22,7 @@ export interface TuyaSmartNode extends Node {
  * Output message format of the tuya node.
  */
 export interface TuyaSmartNodeMessage {
-    state: Boolean;
+    data: object;
     deviceName: string;
     deviceIp: string;
     deviceId: string;

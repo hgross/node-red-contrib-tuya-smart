@@ -15,6 +15,15 @@ export = (RED: Red) => {
         this.deviceIp = properties.deviceIp;
         this.pollingInterval = properties.pollingInterval;
 
+        if (properties.request != "") {
+            try {
+                this.request = JSON.parse(properties.request);
+			} catch {
+                node.status({ fill: "red", shape: "ring", text: "request json error" });
+                return;
+            }
+        }
+
         node.status({ fill:"yellow", shape:"ring", text: "connecting"});
         let indicateConnectionOk = () => node.status({ fill:"green", shape:"ring", text: "connected"});
         let indicateConnectionError = () => node.status({ fill:"red", shape:"ring", text: "disconnected"});
@@ -25,11 +34,11 @@ export = (RED: Red) => {
          * Will set the ui-status as well accordingly.
          */
         let pollAndSendState = () => {
-            smartDevice.get().then(state => {
+            smartDevice.get(this.request).then(data => {
                 indicateConnectionOk();
                 node.send({
                     payload: {
-                        state: state,
+                        data: data,
                         deviceIp: node.deviceIp,
                         deviceId: node.deviceId,
                         deviceName: node.deviceName
