@@ -41,7 +41,7 @@ declare interface TuyaDeviceOptions {
 };
 
 declare interface TuyAPISetOptions {
-    set: Boolean,
+    set: any;
     dps: number = 1;
 };
 

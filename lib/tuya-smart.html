@@ -6,8 +6,23 @@
             deviceIp: { value: "", required: true },
             deviceId: { value: "", required: true },
             deviceKey: { value: "", required: true },
-            request: { value: "", required: false },
-            pollingInterval: { value: 10, validate:RED.validators.number(), rquired: true }
+            request: { 
+                value: '{"schema": true}', 
+                required: false, 
+                validate: function(req) { 
+                    try {
+                        var parsed = JSON.parse(req);
+                        var valid = true;
+                        if("dps" in parsed) {
+                            valid = RED.validators.number()(parsed.dps);
+                        }
+                        return true;
+                    } catch {
+                        return false;
+                    }
+                } 
+            },
+            pollingInterval: { value: 10, validate:RED.validators.number(), required: true }
         },
         inputs: 1,
         outputs: 1,
@@ -36,7 +51,7 @@
         <input type="text" id="node-input-deviceKey" placeholder="fd358171e8au7ef2">
     </div>
     <div class="form-row">
-        <label for="node-input-deviceKey"><i class="fa fa-key"></i> Request</label>
+        <label for="node-input-deviceKey"><i class="fa fa-list-ul"></i> Request</label>
         <input type="text" id="node-input-request" placeholder="">
     </div>
     <div class="form-row">
@@ -56,7 +71,7 @@
             <li><code>deviceName: "string"</code> - The configured device name (arbitrary) for you to identify devices more easily.</li>
         </ul>
     </p>
-    <p>The <code>data</code> payload depends on the <code>request</code>. Options ar
+    <p>The <code>data</code> payload depends on the <code>request</code>. Options are
         <ul>
             <li><code>empty</code> - Just get the device status. Data will be Boolean (true, if the power plug socket is enabled).<li>
             <li><code>{"schema": true}</code> - Get all data for the device. Data will be an object.<li>
@@ -65,9 +80,11 @@
     <p>
     <p>The input payload respects the following fields
         <ul>
-            <li><code>state: true|false</code> - true will enable the socket, false will disable it</li>
+            <li><code>set: any</code> data type depends on the device type. For example boolean to turn power plugs on/off (true will enable the socket, false will disable it)</li>
+            <li><code>dpsIndex: any</code> (optional, default: 1) The data position to be set
         </ul>
         Once the state was set successfully, the node will poll the state immediately and provide it through the output.
+        Refer to <a href="https://github.com/codetheweb/tuyapi" target="_blank">The tuyapi documentation for details</a>,
     </p>
     <p>Refer to <a href="https://github.com/hgross/node-red-contrib-tuya-smart" target="_blank">the repository</a> for some images of example flows with actual in/out payloads.</p>
 </script>

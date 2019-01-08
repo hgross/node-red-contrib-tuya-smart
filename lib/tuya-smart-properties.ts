@@ -39,7 +39,7 @@ export interface TuyaSmartNodeInputMessage {
     /**
      * Desired state to be set
      */
-    state: Boolean;
+    set: any;
 
     /**
      * DPS index (default 1)

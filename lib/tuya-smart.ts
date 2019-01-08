@@ -14,15 +14,7 @@ export = (RED: Red) => {
         this.deviceKey = properties.deviceKey;
         this.deviceIp = properties.deviceIp;
         this.pollingInterval = properties.pollingInterval;
-
-        if (properties.request != "") {
-            try {
-                this.request = JSON.parse(properties.request);
-			} catch {
-                node.status({ fill: "red", shape: "ring", text: "request json error" });
-                return;
-            }
-        }
+        this.request = JSON.parse(properties.request);
 
         node.status({ fill:"yellow", shape:"ring", text: "connecting"});
         let indicateConnectionOk = () => node.status({ fill:"green", shape:"ring", text: "connected"});
@@ -73,7 +65,7 @@ export = (RED: Red) => {
             
             // convert input message to TuyAPI state
             let setMsg : TuyAPISetOptions = {
-                set: inputNodeMsg.state,
+                set: inputNodeMsg.set,
                 dps: isUndefined(inputNodeMsg.dpsIndex) ? 1 : inputNodeMsg.dpsIndex
             };
 
