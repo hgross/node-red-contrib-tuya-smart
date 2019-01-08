@@ -12,8 +12,12 @@ The tuya devices are sold under different names like Gosund, BlitzWolf, Teckin, 
 Check out the [general discussion](https://github.com/codetheweb/tuyapi/issues/5) regarding the tuya api and compatibility.
 
 ![Connecting nodes](https://raw.githubusercontent.com/hgross/node-red-contrib-tuya-smart/master/images/connecting.png "Connecting tuya smart devices")
-![Connected nodes and output format](https://raw.githubusercontent.com/hgross/node-red-contrib-tuya-smart/master/images/connected_with_format.png "Connected tuya smart devices and data format")
-![Input node with input and output format](https://raw.githubusercontent.com/hgross/node-red-contrib-tuya-smart/master/images/input-node.png "Input node with input and output format")
+
+![Connected nodes and output format](https://raw.githubusercontent.com/hgross/node-red-contrib-tuya-smart/master/images/output_single_plug_meter.png "Connected tuya smart devices and data format")
+
+![Input node with input and output format](https://raw.githubusercontent.com/hgross/node-red-contrib-tuya-smart/master/images/input-single-plug-meter.png "Input node with input and output format")
+
+![powerstrip input node with input and output format](https://raw.githubusercontent.com/hgross/node-red-contrib-tuya-smart/master/images/input-power-strip.png "powerstrip input node with input and output format")
 
 ## Installation
 You can install the package from the public npm registry using npm or the tooling provided by the NodeRED-GUI.
