@@ -19,6 +19,8 @@ Check out the [general discussion](https://github.com/codetheweb/tuyapi/issues/5
 
 ![powerstrip input node with input and output format](https://raw.githubusercontent.com/hgross/node-red-contrib-tuya-smart/master/images/input-power-strip.png "powerstrip input node with input and output format")
 
+![tuya 3-socket powerstrip outputs explained](https://raw.githubusercontent.com/hgross/node-red-contrib-tuya-smart/master/images/output-power-strip.png "tuya 3-socket powerstrip outputs explained")
+
 ## Installation
 You can install the package from the public npm registry using npm or the tooling provided by the NodeRED-GUI.
 Check out the [NodeRED guide on adding nodes](https://nodered.org/docs/getting-started/adding-nodes).
