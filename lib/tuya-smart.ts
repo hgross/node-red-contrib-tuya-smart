@@ -57,17 +57,39 @@ export = (RED: Red) => {
         };
 
         /**
-         * 
+         *
          * @param msg input message received
          */
         let onInput = (msg: NodeRedInputMessage) => {
-            let inputNodeMsg : TuyaSmartNodeInputMessage = msg.payload;
-            
-            // convert input message to TuyAPI state
-            let setMsg : TuyAPISetOptions = {
-                set: inputNodeMsg.set,
-                dps: isUndefined(inputNodeMsg.dpsIndex) ? 1 : inputNodeMsg.dpsIndex
-            };
+
+            let setMsg : TuyAPISetOptions | TuyAPISetMultipleOptions;
+
+            if(Array.isArray(msg.payload)) {
+              let inputNodeMsgs : TuyaSmartNodeInputMessage[] = msg.payload;
+
+              let object : TuyAPISetMultipleOptions = {
+                  multiple: true,
+                  data: {}
+              };
+
+              // convert input messages to TuyAPI state
+              for(let inputNodeMsg of inputNodeMsgs) {
+                object.data[isUndefined(inputNodeMsg.dpsIndex) ? 1 : inputNodeMsg.dpsIndex] = inputNodeMsg.set;
+              }
+
+              setMsg = object;
+            } else {
+              let inputNodeMsg : TuyaSmartNodeInputMessage = msg.payload;
+
+              // convert input message to TuyAPI state
+              let object : TuyAPISetOptions = {
+                  set: inputNodeMsg.set,
+                  dps: isUndefined(inputNodeMsg.dpsIndex) ? 1 : inputNodeMsg.dpsIndex
+              };
+
+              setMsg = object;
+            }
+
 
             // set state
             smartDevice.set(setMsg).then((result : Boolean)  => {

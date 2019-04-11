@@ -29,7 +29,7 @@ export interface TuyaSmartNodeMessage {
 }
 
 export interface NodeRedInputMessage {
-    payload: TuyaSmartNodeInputMessage;
+    payload: TuyaSmartNodeInputMessage | TuyaSmartNodeInputMessage[];
 }
 
 /**
