@@ -2,7 +2,7 @@ declare class TuyaDevice {
     constructor(options: TuyaDeviceOptions);
     resolveId(options:any) : Promise<Boolean>;
     get(options?:any) : Promise<Boolean|any>;
-    set(options: TuyAPISetOptions) : Promise<Boolean>;
+    set(options: TuyAPISetOptions | TuyAPISetMultipleOptions) : Promise<Boolean>;
     connect():Promise<Boolean>;
     disconnect():Promise<Boolean>;
     isConnected():Boolean;
@@ -43,6 +43,11 @@ declare interface TuyaDeviceOptions {
 declare interface TuyAPISetOptions {
     set: any;
     dps: number = 1;
+};
+
+declare interface TuyAPISetMultipleOptions {
+    multiple: boolean = true;
+    data: any;
 };
 
 declare class TuyAPIGetOptions {
