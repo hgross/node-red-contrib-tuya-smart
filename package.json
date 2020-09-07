@@ -35,6 +35,6 @@
     "typescript": "2.6.2"
   },
   "dependencies": {
-    "tuyapi": "3.2.3"
+    "tuyapi": "5.3.1"
   }
 }
